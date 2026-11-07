@@ -3,6 +3,12 @@
 **Author:** Dustin Mulcahey  
 **Toolchain:** Lean 4 (`v4.36.0-rc2`) + Mathlib4 + `leanblueprint` + `tectonic`
 
+### Live Interactive Links
+- **[Interactive Web Blueprint](https://dustinmulcahey.github.io/unstable-change-of-rings-lean/)**
+- **[Interactive Dependency Graph](https://dustinmulcahey.github.io/unstable-change-of-rings-lean/dep_graph_document.html)**
+- **[Journal-Style `amsart` Paper (PDF)](https://dustinmulcahey.github.io/unstable-change-of-rings-lean/unstable_change_of_rings.pdf)**
+- **[Blueprint (PDF)](https://dustinmulcahey.github.io/unstable-change-of-rings-lean/blueprint.pdf)**
+
 This repository contains the complete Lean 4 formalization, an `amsart` journal-style LaTeX paper, and an interactive **Lean Blueprint** (with dependency graph) for Dustin Mulcahey's PhD thesis, *"An unstable variant of the Morava Change of Rings theorem for $K(n)$ theory"*.
 
 ---
