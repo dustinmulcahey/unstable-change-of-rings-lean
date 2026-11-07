@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Unstable Case</title>
+<link rel="next" href="sect0011.html" title="Bibliography" />
+<link rel="prev" href="sect0009.html" title="The Stable Case and Canonical Coalgebra Equalizer" />
+<link rel="up" href="sect0008.html" title="An Unstable Change of Rings" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">An Unstable Variant of the Morava Change of Rings Theorem for \(K(n)\) Theory</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Introduction</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">The Theory of Comonads</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Comonads, Coalgebras, and the Cokleisli Category</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Morphisms of Comonads and Induced Functors</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">2.3</span> <span class="toc_entry">The Mate Correspondence and Lifted Adjunctions</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">2.4</span> <span class="toc_entry">The Cobar Resolution and Left Contractibility</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">2.5</span> <span class="toc_entry">A Generalized Shapiro’s Lemma for Comonads</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active">
+  <a href="sect0008.html"><span class="toc_ref">3</span> <span class="toc_entry">An Unstable Change of Rings</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0009.html"><span class="toc_ref">3.1</span> <span class="toc_entry">The Stable Case and Canonical Coalgebra Equalizer</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0010.html"><span class="toc_ref">3.2</span> <span class="toc_entry">The Unstable Case</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">4</span> <span class="toc_entry">Bibliography</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000011">3.2 The Unstable Case</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:unstable_sigma_comonad">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.3</span>
+    <span class="theorem_thmtitle">Unstable Sandwich Comonad \(U_{\Sigma }\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:unstable_sigma_comonad">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000027"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstableSigmaComonad" class="lean_decl">ThesisLean.Section3_2.unstableSigmaComonad</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>   For any comonad \(U_{\Gamma }\) on \(\mathcal{C}\) and any adjunction \(F \dashv U : \mathcal{D} \to \mathcal{C}\) with unit \(\eta \) and counit \(\varepsilon \), the endofunctor \(U_{\Sigma } := F \circ U_{\Gamma } \circ U : \mathcal{D} \to \mathcal{D}\) is a comonad with counit \(\epsilon ^{\Sigma }_N = \varepsilon _N \circ F(\epsilon ^{\Gamma }_{UN})\) and comultiplication \(\Delta ^{\Sigma }_N = F(U_{\Gamma }(\eta _{U_{\Gamma } UN})) \circ F(\Delta ^{\Gamma }_{UN})\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000027">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Coassociativity follows from naturality of \(\Delta ^{\Gamma }\), coassociativity of \(U_{\Gamma }\), and naturality of \(\eta \). Counitality follows from the counit laws of \(U_{\Gamma }\) and both triangle identities of \(F \dashv U\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:unstable_alpha">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.4</span>
+    <span class="theorem_thmtitle">Unstable Base-Change Comonad Morphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:unstable_alpha">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000028"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#thm:unstable_sigma_comonad">Theorem 3.3</a></li>
+          
+          <li><a href="sect0004.html#defn:comonad_functor">Definition 2.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstableComonadFunctor" class="lean_decl">ThesisLean.Section3_2.unstableComonadFunctor</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The natural transformation \(\alpha _M := F(U_{\Gamma }(\eta _M)) : F(U_{\Gamma }(M)) \to U_{\Sigma }(F(M))\) makes \((F, \alpha ) : (\mathcal{C}, U_{\Gamma }) \to (\mathcal{D}, U_{\Sigma })\) a functor of comonads. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000028">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Verified via naturality of \(\Delta ^{\Gamma }\), \(\epsilon ^{\Gamma }\), and \(\eta \), together with the left triangle identity of \(F \dashv U\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:unstable_lifted_adj">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.5</span>
+    <span class="theorem_thmtitle">Unstable Lifted Adjunction \(\alpha _* \dashv \alpha ^*\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:unstable_lifted_adj">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000029"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#thm:unstable_alpha">Theorem 3.4</a></li>
+          
+          <li><a href="sect0005.html#prop:lifted_adjunction">Proposition 2.11</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstableLiftedAdjunction" class="lean_decl">ThesisLean.Section3_2.unstableLiftedAdjunction</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstableMateNatTrans_app" class="lean_decl">ThesisLean.Section3_2.unstableMateNatTrans_app</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    When \(\mathcal{C}^{U_{\Gamma }}\) has equalizers, \((F, \alpha )\) induces an adjoint pair \(\alpha _* \dashv \alpha ^* : \mathcal{D}^{U_{\Sigma }} \to \mathcal{C}^{U_{\Gamma }}\), with explicit mate transformation \(\beta _N = U(U_{\Sigma }(\varepsilon _N)) \circ \eta _{U_{\Gamma }(UN)}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000029">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Obtained by applying Proposition&#160;<a href="sect0005.html#prop:lifted_adjunction">2.11</a> to Theorem&#160;<a href="sect0010.html#thm:unstable_alpha">3.4</a>. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:unstable_counit_iso">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.6</span>
+    <span class="theorem_thmtitle">Lifted Counit Isomorphism \(\alpha _*\alpha ^* N \cong N\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:unstable_counit_iso">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000030"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#thm:unstable_lifted_adj">Theorem 3.5</a></li>
+          
+          <li><a href="sect0009.html#prop:canonical_equalizer">Proposition 3.1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstablePushforwardCotensorIso" class="lean_decl">ThesisLean.Section3_2.unstablePushforwardCotensorIso</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.isIso_unstableLiftedCounit" class="lean_decl">ThesisLean.Section3_2.isIso_unstableLiftedCounit</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Assume \(\mathcal{C}^{U_{\Gamma }}\) has equalizers, \(F\) preserves the defining equalizer of \(\alpha ^* N\), and \(\varepsilon : FU \xrightarrow {\sim } 1_{\mathcal{D}}\) is an isomorphism. Then the lifted counit \(\tilde{\varepsilon }_N : \alpha _*(\alpha ^* N) \to N\) is an isomorphism of \(U_{\Sigma }\)-coalgebras. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000030">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>On cofree objects, \(\alpha _*(\operatorname {cofree}_{U_{\Gamma }}(UY)) = \operatorname {cofree}_{U_{\Sigma }}(Y)\) holds definitionally. Since \(F\) preserves the equalizer and \(\varepsilon \) is an isomorphism, \(\alpha _*(\alpha ^* N)\) is the equalizer of \((\operatorname {cofree}_{U_{\Sigma }}(\psi _N), \Delta ^{\Sigma }_N)\), which is isomorphic to \(N\) by Proposition&#160;<a href="sect0009.html#prop:canonical_equalizer">3.1</a> via the lifted counit \(\tilde{\varepsilon }_N\). </p>
+
+  </div>
+</div>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:excess_and_colimit">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">3.7</span>
+    <span class="proposition_thmtitle">Excess Bounds and Colimit Decomposition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#prop:excess_and_colimit">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000031"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#thm:unstable_sigma_comonad">Theorem 3.3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.excess_vn_shift_iff" class="lean_decl">ThesisLean.Section3_2.excess_vn_shift_iff</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.excess_ul_action_iff" class="lean_decl">ThesisLean.Section3_2.excess_ul_action_iff</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.prop3_2_2_colimit_iso" class="lean_decl">ThesisLean.Section3_2.prop3_2_2_colimit_iso</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>    The unstable excess condition \(2p^n {\lt} k + (2p^n - 2)\) holds iff \(k \ge 3\), and the \(b(n)_*\)-action excess condition \(2p^n {\lt} k\) holds iff \(k \ge 2p^n + 1\). In this range, left and right \(v_n^{-1}\)-actions commute with conjugation, and colimit preservation yields \(U_{\Gamma }(K(n)_* \otimes M) \cong B(n)_* \otimes _{K(n)_*} U_{\Sigma }(K(n)_* \otimes M)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000031">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Arithmetic bounds verified by linear arithmetic; inversion and colimit isomorphisms verified categorically. </p>
+
+  </div>
+</div>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:height_n_unit_iso">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">3.8</span>
+    <span class="proposition_thmtitle">Unstable Cotensor Identification and Height-\(n\) Unit Isomorphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#prop:height_n_unit_iso">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000032"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#thm:unstable_lifted_adj">Theorem 3.5</a></li>
+          
+          <li><a href="sect0009.html#prop:canonical_equalizer">Proposition 3.1</a></li>
+          
+          <li><a href="sect0010.html#prop:excess_and_colimit">Proposition 3.7</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.prop3_2_3_unitPullbackIso" class="lean_decl">ThesisLean.Section3_2.prop3_2_3_unitPullbackIso</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.prop3_2_4_cotensor_cofree" class="lean_decl">ThesisLean.Section3_2.prop3_2_4_cotensor_cofree</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.liftedUnitIsoOfHeightNConnected" class="lean_decl">ThesisLean.Section3_2.liftedUnitIsoOfHeightNConnected</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>    When \(B(n)_* \otimes _{K(n)_*} -\) preserves the canonical equalizer of \(U_{\Sigma }\)-coalgebras: </p>
+<ol class="enumerate">
+  <li><p>\(\alpha ^*(U_{\Sigma }(Y)) \cong U_{\Gamma }(U(Y))\) on cofree coalgebras. </p>
+</li>
+  <li><p>For \(k\)-connected \(M\) with \(k \ge 2p^n + 1\), the underlying object of \(\alpha ^*\alpha _* M\) is isomorphic to \(B(n)_* \otimes _{BP_*} M\). </p>
+</li>
+  <li><p>If \(M\) is also of height \(n\), the lifted unit \(\tilde{\sigma }_M : M \to \alpha ^*\alpha _* M\) is an isomorphism of \(U_{\Gamma }\)-coalgebras. </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000032">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Proved by comparing the defining equalizer of \(\alpha ^*\) with the image of the canonical equalizer of Proposition&#160;<a href="sect0009.html#prop:canonical_equalizer">3.1</a> under \(B(n)_* \otimes _{K(n)_*} -\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:unstable_change_of_rings">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.9</span>
+    <span class="theorem_thmtitle">Unstable Change of Rings</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:unstable_change_of_rings">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000033"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#prop:generalized_shapiro">Proposition 2.15</a></li>
+          
+          <li><a href="sect0010.html#prop:height_n_unit_iso">Proposition 3.8</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstableChangeOfRingsCobarIso" class="lean_decl">ThesisLean.Section3_2.unstableChangeOfRingsCobarIso</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_2.unstablePullbackCobarLeftContractibleTower" class="lean_decl">ThesisLean.Section3_2.unstablePullbackCobarLeftContractibleTower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(M\) is a \(U_{\Gamma }\)-comodule of height \(n\) and connectivity \(k \ge 2p^n + 1\), then for any test coalgebra \(P \in \mathcal{C}^{U_{\Gamma }}\), there is an isomorphism of coaugmented cosimplicial cobar hom-towers </p>
+<div class="displaymath" id="a0000000034">
+  \[  \operatorname {Hom}_{\mathcal{C}^{U_{\Gamma }}}(P, C^{\bullet }_{U_{\Gamma }}(M)) \; \cong \;  \operatorname {Hom}_{\mathcal{D}^{U_{\Sigma }}}(\alpha _* P, C^{\bullet }_{U_{\Sigma }}(\alpha _* M)),  \]
+</div>
+<p> and \(\alpha ^*(C^{\bullet }_{U_{\Sigma }}(\alpha _* M))\) has a left-contractible hom-tower into every cofree \(U_{\Gamma }\)-coalgebra. Consequently, \(\operatorname {Ext}_{U_{\Gamma }}(BP_*, M) \cong \operatorname {Ext}_{U_{\Sigma }}(K(n)_*, K(n)_* \otimes _{BP_*} M)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000033">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Combines the cobar isomorphism induced by the lifted unit isomorphism \(\tilde{\sigma }_M : M \xrightarrow {\sim } \alpha ^*\alpha _* M\) of Proposition&#160;<a href="sect0010.html#prop:height_n_unit_iso">3.8</a> with the Generalized Shapiro’s Lemma (Proposition&#160;<a href="sect0007.html#prop:generalized_shapiro">2.15</a>). </p>
+
+  </div>
+</div>
+
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0009.html" title="The Stable Case and Canonical Coalgebra Equalizer"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="sect0008.html" title="An Unstable Change of Rings"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0011.html" title="Bibliography"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

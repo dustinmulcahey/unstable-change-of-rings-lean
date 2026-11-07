@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Mate Correspondence and Lifted Adjunctions</title>
+<link rel="next" href="sect0006.html" title="The Cobar Resolution and Left Contractibility" />
+<link rel="prev" href="sect0004.html" title="Morphisms of Comonads and Induced Functors" />
+<link rel="up" href="sect0002.html" title="The Theory of Comonads" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">An Unstable Variant of the Morava Change of Rings Theorem for \(K(n)\) Theory</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Introduction</span></a>
+ </li>
+<li class=" active">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">The Theory of Comonads</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Comonads, Coalgebras, and the Cokleisli Category</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Morphisms of Comonads and Induced Functors</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0005.html"><span class="toc_ref">2.3</span> <span class="toc_entry">The Mate Correspondence and Lifted Adjunctions</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">2.4</span> <span class="toc_entry">The Cobar Resolution and Left Contractibility</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">2.5</span> <span class="toc_entry">A Generalized Shapiro’s Lemma for Comonads</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">3</span> <span class="toc_entry">An Unstable Change of Rings</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0009.html"><span class="toc_ref">3.1</span> <span class="toc_entry">The Stable Case and Canonical Coalgebra Equalizer</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">3.2</span> <span class="toc_entry">The Unstable Case</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">4</span> <span class="toc_entry">Bibliography</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000006">2.3 The Mate Correspondence and Lifted Adjunctions</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:mate_relations">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">2.9</span>
+    <span class="proposition_thmtitle">Fundamental Mate Relations</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#prop:mate_relations">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000017"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#defn:comonad_functor">Definition 2.4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section2_3.mate_fundamental_rel_counit" class="lean_decl">ThesisLean.Section2_3.mate_fundamental_rel_counit</a></li>
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section2_3.mate_fundamental_rel_unit" class="lean_decl">ThesisLean.Section2_3.mate_fundamental_rel_unit</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>    Given \(F \dashv U\) with unit \(\sigma : 1_{\mathcal{C}} \to UF\) and counit \(\tau : FU \to 1_{\mathcal{D}}\), and a comonad functor \((F, \alpha ) : (\mathcal{C}, G) \to (\mathcal{D}, H)\), the mate transformation \(\beta _Y := U(H(\tau _Y) \circ \alpha _{UY}) \circ \sigma _{GUY}\) satisfies </p>
+<div class="displaymath" id="a0000000018">
+  \[  \tau _{HY} \circ F(\beta _Y) = H(\tau _Y) \circ \alpha _{UY} \quad \text{and}\quad \beta _{FX} \circ G(\sigma _X) = U(\alpha _X) \circ \sigma _{GX}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000017">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Proved using naturality of \(\tau , \sigma , \alpha \) and the triangle identities for \(F \dashv U\). </p>
+
+  </div>
+</div>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:mate_opfunctor">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">2.10</span>
+    <span class="proposition_thmtitle">Mate Opfunctor of Comonads</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#prop:mate_opfunctor">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000019"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#defn:comonad_functor">Definition 2.4</a></li>
+          
+          <li><a href="sect0004.html#defn:comonad_opfunctor">Definition 2.6</a></li>
+          
+          <li><a href="sect0005.html#prop:mate_relations">Proposition 2.9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section2_3.mateOpfunctor" class="lean_decl">ThesisLean.Section2_3.mateOpfunctor</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>    Under the hypotheses of Proposition&#160;<a href="sect0005.html#prop:mate_relations">2.9</a>, \((U, \beta )\) is an opfunctor of comonads \((\mathcal{D}, H) \to (\mathcal{C}, G)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000019">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Verified by passing to left-adjoint transposes via Proposition&#160;<a href="sect0005.html#prop:mate_relations">2.9</a> and applying the comonad functor laws of \((F, \alpha )\). </p>
+
+  </div>
+</div>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:lifted_adjunction">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">2.11</span>
+    <span class="proposition_thmtitle">Lifted Adjunction on Coalgebras</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#prop:lifted_adjunction">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000020"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#prop:comonad_pushforward">Proposition 2.5</a></li>
+          
+          <li><a href="sect0004.html#prop:coalgebra_pullback">Proposition 2.8</a></li>
+          
+          <li><a href="sect0005.html#prop:mate_opfunctor">Proposition 2.10</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section2_3.liftedAdjunction" class="lean_decl">ThesisLean.Section2_3.liftedAdjunction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>    When \(\mathcal{C}^G\) has equalizers, the pushforward \(\alpha _* : \mathcal{C}^G \to \mathcal{D}^H\) is left adjoint to the pullback \(\alpha ^* : \mathcal{D}^H \to \mathcal{C}^G\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000020">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Constructed by lifting the unit \(\sigma _X\) into the equalizer \(\alpha ^*\alpha _* X\) via \(G(\sigma _X) \circ \psi _X\), lifting the counit \(\tau _Y\) via \(\tau _Y \circ F(\epsilon ^G_{UY} \circ \iota _Y)\), and verifying both triangle identities in \(\mathcal{D}^H\) and \(\mathcal{C}^G\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0004.html" title="Morphisms of Comonads and Induced Functors"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="sect0002.html" title="The Theory of Comonads"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0006.html" title="The Cobar Resolution and Left Contractibility"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

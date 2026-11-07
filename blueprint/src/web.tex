@@ -1,0 +1,29 @@
+\documentclass{report}
+
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{hyperref}
+\usepackage[showmore, dep_graph]{blueprint}
+
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\cofree}{\operatorname{cofree}}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exmp}[theorem]{Example}
+\newtheorem{rem}[theorem]{Remark}
+
+\title{An Unstable Variant of the Morava Change of Rings Theorem for $K(n)$ Theory}
+\author{Dustin Mulcahey}
+
+\begin{document}
+\maketitle
+\input{content}
+\bibliographystyle{abbrv}
+\bibliography{references}
+\end{document}

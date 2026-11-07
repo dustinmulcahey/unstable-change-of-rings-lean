@@ -1,0 +1,8 @@
+/.lake
+*.aux
+*.log
+*.out
+*.toc
+*.blg
+*.paux
+blueprint/src/print.pdf

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Stable Case and Canonical Coalgebra Equalizer</title>
+<link rel="next" href="sect0010.html" title="The Unstable Case" />
+<link rel="prev" href="sect0008.html" title="An Unstable Change of Rings" />
+<link rel="up" href="sect0008.html" title="An Unstable Change of Rings" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">An Unstable Variant of the Morava Change of Rings Theorem for \(K(n)\) Theory</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Introduction</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">The Theory of Comonads</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Comonads, Coalgebras, and the Cokleisli Category</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Morphisms of Comonads and Induced Functors</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">2.3</span> <span class="toc_entry">The Mate Correspondence and Lifted Adjunctions</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">2.4</span> <span class="toc_entry">The Cobar Resolution and Left Contractibility</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">2.5</span> <span class="toc_entry">A Generalized Shapiro’s Lemma for Comonads</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active">
+  <a href="sect0008.html"><span class="toc_ref">3</span> <span class="toc_entry">An Unstable Change of Rings</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class=" active current">
+  <a href="sect0009.html"><span class="toc_ref">3.1</span> <span class="toc_entry">The Stable Case and Canonical Coalgebra Equalizer</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">3.2</span> <span class="toc_entry">The Unstable Case</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">4</span> <span class="toc_entry">Bibliography</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000010">3.1 The Stable Case and Canonical Coalgebra Equalizer</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:canonical_equalizer">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">3.1</span>
+    <span class="proposition_thmtitle">Canonical Equalizer Presentation of Coalgebras</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#prop:canonical_equalizer">#</a>
+    
+    <a class="icon proof" href="sect0009.html#a0000000025"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_1.coalgebraCanonicalEqualizerIso" class="lean_decl">ThesisLean.Section3_1.coalgebraCanonicalEqualizerIso</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>   For any comonad \(G\) on \(\mathcal{C}\) and any \(G\)-coalgebra \(X = (X, \psi _X)\), the coaction \(\psi _X : X \to \operatorname {cofree}_G(X)\) exhibits \(X\) as the equalizer in \(\mathcal{C}^G\) of \(\operatorname {cofree}_G(\psi _X)\) and \(\Delta _X : \operatorname {cofree}_G(X) \rightrightarrows \operatorname {cofree}_G(GX)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000025">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Any cone \(k : W \to \operatorname {cofree}_G(X)\) equalizing \(\operatorname {cofree}_G(\psi _X)\) and \(\Delta _X\) factors uniquely through \(X\) via \(\epsilon _X \circ k\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:stable_cor">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3.2</span>
+    <span class="theorem_thmtitle">Stable Change of Rings</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#thm:stable_cor">#</a>
+    
+    <a class="icon proof" href="sect0009.html#a0000000026"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#prop:generalized_shapiro">Proposition 2.15</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://leanprover-community.github.io/mathlib4_docs/find/#doc/ThesisLean.Section3_1.stableChangeOfRingsCobarIso" class="lean_decl">ThesisLean.Section3_1.stableChangeOfRingsCobarIso</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    When the stable cotensor satisfies \(U_G \circ \pi ^* \cong (B(n)_* \otimes _{K(n)_*} -) \circ U_H\), Proposition&#160;<a href="sect0007.html#prop:generalized_shapiro">2.15</a> yields the isomorphism of cobar hom-towers \(\operatorname {Hom}_{\mathcal{C}^G}(M, \pi ^* C^{\bullet }_H(N)) \cong \operatorname {Hom}_{\mathcal{D}^H}(\pi _* M, C^{\bullet }_H(N))\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000026">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Direct specialization of Proposition&#160;<a href="sect0007.html#prop:generalized_shapiro">2.15</a>. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0008.html" title="An Unstable Change of Rings"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="sect0008.html" title="An Unstable Change of Rings"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0010.html" title="The Unstable Case"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

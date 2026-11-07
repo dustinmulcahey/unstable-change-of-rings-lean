@@ -1,0 +1,305 @@
+\chapter{Introduction}
+
+The aim of this work is twofold: to give a foundational account of comonadic techniques in unstable homotopy theory, and to apply this foundation to prove an unstable variant of the Morava change of rings theorem from stable homotopy theory \cite{mr,greenbook}, completely formalized in Lean~4 \cite{lean4,mathlib}.
+
+Comonads have traditionally been used to define resolving objects, and hence derived functors, in both abelian and non-abelian settings \cite{barrbeck}. In work of Bousfield \cite{bousfield}, a comonad $G$ defines a model structure on the category of cosimplicial objects over the category $\mathcal{C}^G$ of coalgebras over $G$, in which the traditional cobar resolutions compute derived mapping spaces and $\Ext$ groups.
+
+Under suitable hypotheses, a morphism of comonads induces a functor on the categories of cosimplicial coalgebras that preserves resolving objects. This is the content of our \emph{Generalized Shapiro's Lemma for Comonads} (Proposition~\ref{prop:generalized_shapiro}). We then define an unstable version $U_{\Sigma}$ of the Morava stabilizer algebra $\Sigma(n)$ and use the generalized Shapiro's lemma to prove that the unstable change of rings isomorphism holds in connectivity $k \ge 2p^n + 1$ (Theorem~\ref{thm:unstable_change_of_rings}).
+
+\chapter{The Theory of Comonads}
+
+\section{Comonads, Coalgebras, and the Cokleisli Category}
+
+\begin{definition}[Cokleisli-to-Coalgebra Functor]
+  \label{defn:cokleisli_to_coalgebra}
+  \lean{ThesisLean.Section2_1.cokleisliToCoalgebra}
+  \leanok
+  For a comonad $G$ on a category $\mathcal{C}$, the functor $i : \mathcal{C}_G \to \mathcal{C}^G$ sends $X \mapsto (GX, \Delta_X)$ and a Kleisli morphism $f : GX \to Y$ to $G(f) \circ \Delta_X : GX \to GY$.
+\end{definition}
+
+\begin{definition}[Coalgebra-to-Cokleisli Functor]
+  \label{defn:coalgebra_to_cokleisli}
+  \lean{ThesisLean.Section2_1.coalgebraToCokleisli}
+  \leanok
+  For a comonad $G$ on $\mathcal{C}$, the functor $j : \mathcal{C}^G \to \mathcal{C}_G$ sends a $G$-coalgebra $(X, \psi_X)$ to $X$ and a coalgebra morphism $f : X \to Y$ to $f \circ \epsilon_X : GX \to Y$.
+\end{definition}
+
+\begin{proposition}[Cokleisli--Coalgebra Comparison]
+  \label{prop:cokleisli_adj}
+  \lean{ThesisLean.Section2_1.cokleisliToCoalgebraFullyFaithful}
+  \uses{defn:cokleisli_to_coalgebra, defn:coalgebra_to_cokleisli}
+  \leanok
+  The functor $i : \mathcal{C}_G \to \mathcal{C}^G$ is fully faithful (exhibiting $\mathcal{C}_G$ as the full subcategory of cofree coalgebras in $\mathcal{C}^G$), and $j : \mathcal{C}^G \to \mathcal{C}_G$ provides the comparison functor in the opposite direction.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Verified via the hom-set equivalence $\mathcal{C}(GX, Y) \simeq \mathcal{C}^G((X,\psi_X), (GY,\Delta_Y))$ sending $f \mapsto G(f) \circ \Delta_X \circ \psi_X$ with inverse $g \mapsto \epsilon_Y \circ g$.
+\end{proof}
+
+\section{Morphisms of Comonads and Induced Functors}
+
+\begin{definition}[Functor of Comonads]
+  \label{defn:comonad_functor}
+  \lean{ThesisLean.Section2_2.ComonadFunctor}
+  \leanok
+  A functor of comonads $(F, \alpha) : (\mathcal{C}, G) \to (\mathcal{D}, H)$ consists of a functor $F : \mathcal{C} \to \mathcal{D}$ and a natural transformation $\alpha : F \circ G \to H \circ F$ satisfying $\Delta^H_{FX} \circ \alpha_X = H(\alpha_X) \circ \alpha_{GX} \circ F(\Delta^G_X)$ and $\epsilon^H_{FX} \circ \alpha_X = F(\epsilon^G_X)$.
+\end{definition}
+
+\begin{proposition}[Coalgebra Pushforward]
+  \label{prop:comonad_pushforward}
+  \lean{ThesisLean.Section2_2.ComonadFunctor.pushforward}
+  \uses{defn:comonad_functor}
+  \leanok
+  A functor of comonads $(F, \alpha) : (\mathcal{C}, G) \to (\mathcal{D}, H)$ induces a pushforward functor $\alpha_* : \mathcal{C}^G \to \mathcal{D}^H$ given on objects by $\alpha_*(X, \psi_X) = (FX, \alpha_X \circ F(\psi_X))$, commuting strictly with the forgetful functors.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Coassociativity and counitality of $\alpha_X \circ F(\psi_X)$ follow directly from the coalgebra axioms for $(X, \psi_X)$, naturality of $\alpha$, and Definition~\ref{defn:comonad_functor}.
+\end{proof}
+
+\begin{definition}[Opfunctor of Comonads]
+  \label{defn:comonad_opfunctor}
+  \lean{ThesisLean.Section2_2.ComonadOpfunctor}
+  \leanok
+  An opfunctor of comonads $(U, \beta) : (\mathcal{D}, H) \to (\mathcal{C}, G)$ consists of a functor $U : \mathcal{D} \to \mathcal{C}$ and a natural transformation $\beta : G \circ U \to U \circ H$ satisfying $U(\Delta^H_Y) \circ \beta_Y = \beta_{HY} \circ G(\beta_Y) \circ \Delta^G_{UY}$ and $U(\epsilon^H_Y) \circ \beta_Y = \epsilon^G_{UY}$.
+\end{definition}
+
+\begin{proposition}[Cokleisli Pushforward]
+  \label{prop:cokleisli_pushforward}
+  \lean{ThesisLean.Section2_2.ComonadOpfunctor.cokleisliPushforward}
+  \uses{defn:comonad_opfunctor}
+  \leanok
+  An opfunctor of comonads $(U, \beta) : (\mathcal{D}, H) \to (\mathcal{C}, G)$ induces a functor $\beta_* : \mathcal{D}_H \to \mathcal{C}_G$ given by $\beta_*(Y) = UY$ and $\beta_*(f : HY \to Y') = U(f) \circ \beta_Y$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Preservation of identities and composition follows from the two opfunctor axioms of Definition~\ref{defn:comonad_opfunctor}.
+\end{proof}
+
+\begin{proposition}[Coalgebra Pullback via Equalizers]
+  \label{prop:coalgebra_pullback}
+  \lean{ThesisLean.Section2_2.ComonadOpfunctor.coalgebraPullback}
+  \uses{defn:comonad_opfunctor}
+  \leanok
+  Assume $\mathcal{C}^G$ has equalizers. Any opfunctor of comonads $(U, \beta) : (\mathcal{D}, H) \to (\mathcal{C}, G)$ induces a pullback functor $\alpha^* : \mathcal{D}^H \to \mathcal{C}^G$ defined on $(Y, \psi_Y)$ as the equalizer in $\mathcal{C}^G$ of $\cofree_G(U\psi_Y)$ and $G(\beta_Y) \circ \Delta^G_{UY} : \cofree_G(UY) \rightrightarrows \cofree_G(UHY)$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Constructed via the limit equalizer of the parallel pair of cofree $G$-coalgebra morphisms.
+\end{proof}
+
+\section{The Mate Correspondence and Lifted Adjunctions}
+
+\begin{proposition}[Fundamental Mate Relations]
+  \label{prop:mate_relations}
+  \lean{ThesisLean.Section2_3.mate_fundamental_rel_counit, ThesisLean.Section2_3.mate_fundamental_rel_unit}
+  \uses{defn:comonad_functor}
+  \leanok
+  Given $F \dashv U$ with unit $\sigma : 1_{\mathcal{C}} \to UF$ and counit $\tau : FU \to 1_{\mathcal{D}}$, and a comonad functor $(F, \alpha) : (\mathcal{C}, G) \to (\mathcal{D}, H)$, the mate transformation $\beta_Y := U(H(\tau_Y) \circ \alpha_{UY}) \circ \sigma_{GUY}$ satisfies
+  \[
+    \tau_{HY} \circ F(\beta_Y) = H(\tau_Y) \circ \alpha_{UY} \quad\text{and}\quad \beta_{FX} \circ G(\sigma_X) = U(\alpha_X) \circ \sigma_{GX}.
+  \]
+\end{proposition}
+\begin{proof}
+  \leanok
+  Proved using naturality of $\tau, \sigma, \alpha$ and the triangle identities for $F \dashv U$.
+\end{proof}
+
+\begin{proposition}[Mate Opfunctor of Comonads]
+  \label{prop:mate_opfunctor}
+  \lean{ThesisLean.Section2_3.mateOpfunctor}
+  \uses{defn:comonad_functor, defn:comonad_opfunctor, prop:mate_relations}
+  \leanok
+  Under the hypotheses of Proposition~\ref{prop:mate_relations}, $(U, \beta)$ is an opfunctor of comonads $(\mathcal{D}, H) \to (\mathcal{C}, G)$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Verified by passing to left-adjoint transposes via Proposition~\ref{prop:mate_relations} and applying the comonad functor laws of $(F, \alpha)$.
+\end{proof}
+
+\begin{proposition}[Lifted Adjunction on Coalgebras]
+  \label{prop:lifted_adjunction}
+  \lean{ThesisLean.Section2_3.liftedAdjunction}
+  \uses{prop:comonad_pushforward, prop:coalgebra_pullback, prop:mate_opfunctor}
+  \leanok
+  When $\mathcal{C}^G$ has equalizers, the pushforward $\alpha_* : \mathcal{C}^G \to \mathcal{D}^H$ is left adjoint to the pullback $\alpha^* : \mathcal{D}^H \to \mathcal{C}^G$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Constructed by lifting the unit $\sigma_X$ into the equalizer $\alpha^*\alpha_* X$ via $G(\sigma_X) \circ \psi_X$, lifting the counit $\tau_Y$ via $\tau_Y \circ F(\epsilon^G_{UY} \circ \iota_Y)$, and verifying both triangle identities in $\mathcal{D}^H$ and $\mathcal{C}^G$.
+\end{proof}
+
+\section{The Cobar Resolution and Left Contractibility}
+
+\begin{definition}[Induced Monad and Cosimplicial Cobar Complex]
+  \label{defn:cobar_complex}
+  \lean{ThesisLean.Section2_4.inducedMonadOnCoalgebras, ThesisLean.Section2_4.cobarObj, ThesisLean.Section2_4.cobarCoface, ThesisLean.Section2_4.cobarCodegeneracy}
+  \leanok
+  For a comonad $G$ on $\mathcal{C}$, the adjunction $U_G \dashv \cofree_G$ induces a monad $(T, \mu, \eta)$ on $\mathcal{C}^G$ with $T(X, \psi_X) = (GX, \Delta_X)$, $\eta_X = \psi_X$, and $\mu_X = G(\epsilon_X)$. The cosimplicial cobar complex $C^{\bullet}_G(X)$ has $C^n_G(X) = T^{n+1}(X)$ with coaugmentation $d^0_{-1} = \eta_X$, cofaces $d^i_n : T^{n+1}X \to T^{n+2}X$, and codegeneracies $s^j_n : T^{n+2}X \to T^{n+1}X$.
+\end{definition}
+
+\begin{proposition}[Cosimplicial Identities and Left Contractibility into Cofree Coalgebras]
+  \label{prop:cobar_contractible}
+  \lean{ThesisLean.Section2_4.cobarCoface_comp_cobarCoface, ThesisLean.Section2_4.cobarHomLeftContractibleTower}
+  \uses{defn:cobar_complex}
+  \leanok
+  The cobar complex $C^{\bullet}_G(X)$ satisfies all five cosimplicial identities, and for every $J \in \mathcal{C}$ the augmented simplicial hom-tower $\Hom_{\mathcal{C}^G}(C^{\bullet}_G(X), G(J)) \to \Hom_{\mathcal{C}^G}(X, G(J))$ admits a left contraction given by $f \mapsto G(f) \circ \Delta$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  All five cosimplicial identities follow by induction on cosimplicial degree from the monad laws of $T$. The left contraction identities follow from coassociativity and counitality of $G$.
+\end{proof}
+
+\section{A Generalized Shapiro's Lemma for Comonads}
+
+\begin{proposition}[Shapiro Naturality Triangle]
+  \label{prop:shapiro_triangle}
+  \lean{ThesisLean.Section2_5.shapiro_naturality_triangle_coaug}
+  \uses{prop:lifted_adjunction, defn:cobar_complex}
+  \leanok
+  For any $f : M \to \alpha^* N$ in $\mathcal{C}^G$, the lifted adjunction $\tilde{\gamma} : \Hom_{\mathcal{C}^G}(M, \alpha^* -) \simeq \Hom_{\mathcal{D}^H}(\alpha_* M, -)$ commutes with the cobar coaugmentation $\psi_N : N \to H(N)$:
+  \[
+    \tilde{\gamma}_{M, H(N)}(f \circ_{\text{post}} \alpha^*(\psi_N)) = \tilde{\gamma}_{M, N}(f) \circ \psi_N.
+  \]
+\end{proposition}
+\begin{proof}
+  \leanok
+  Proved via naturality of the lifted unit and the adjunction hom-equivalence.
+\end{proof}
+
+\begin{proposition}[Generalized Shapiro's Lemma for Comonads]
+  \label{prop:generalized_shapiro}
+  \lean{ThesisLean.Section2_5.pullbackCobarCofreeLeftContractibleTower, ThesisLean.Section2_5.generalizedShapiroCobarIso, ThesisLean.Section2_5.generalizedShapiroExtCobarIso}
+  \uses{prop:lifted_adjunction, prop:cobar_contractible, prop:shapiro_triangle}
+  \leanok
+  Assume there is a functor $W : \mathcal{D} \to \mathcal{C}$ and a natural isomorphism $U_G \circ \alpha^* \cong W \circ U_H$. Then:
+  \begin{enumerate}
+    \item For every $N \in \mathcal{D}^H$ and $J \in \mathcal{C}$, the hom-tower $\Hom_{\mathcal{C}^G}(\alpha^*(C^{\bullet}_H(N)), G(J)) \to \Hom_{\mathcal{C}^G}(\alpha^* N, G(J))$ is left-contractible, so $\alpha^* N \to \alpha^*(C^{\bullet}_H(N))$ is a Bousfield weak $G$-resolution.
+    \item For every $M \in \mathcal{C}^G$ and $N \in \mathcal{D}^H$, there is an isomorphism of coaugmented cosimplicial hom-towers $\Hom_{\mathcal{C}^G}(M, \alpha^*(C^{\bullet}_H(N))) \cong \Hom_{\mathcal{D}^H}(\alpha_* M, C^{\bullet}_H(N))$, inducing $\Ext_G(M, \alpha^* N) \cong \Ext_H(\alpha_* M, N)$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \leanok
+  Part (1) transports the underlying left contraction $W(\epsilon^H)^*$ across the adjunction $U_G \dashv \cofree_G$ and the isomorphism $U_G \circ \alpha^* \cong W \circ U_H$. Part (2) applies the lifted adjunction levelwise across the cobar complex.
+\end{proof}
+
+\chapter{An Unstable Change of Rings}
+
+\section{The Stable Case and Canonical Coalgebra Equalizer}
+
+\begin{proposition}[Canonical Equalizer Presentation of Coalgebras]
+  \label{prop:canonical_equalizer}
+  \lean{ThesisLean.Section3_1.coalgebraCanonicalEqualizerIso}
+  \leanok
+  For any comonad $G$ on $\mathcal{C}$ and any $G$-coalgebra $X = (X, \psi_X)$, the coaction $\psi_X : X \to \cofree_G(X)$ exhibits $X$ as the equalizer in $\mathcal{C}^G$ of $\cofree_G(\psi_X)$ and $\Delta_X : \cofree_G(X) \rightrightarrows \cofree_G(GX)$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Any cone $k : W \to \cofree_G(X)$ equalizing $\cofree_G(\psi_X)$ and $\Delta_X$ factors uniquely through $X$ via $\epsilon_X \circ k$.
+\end{proof}
+
+\begin{theorem}[Stable Change of Rings]
+  \label{thm:stable_cor}
+  \lean{ThesisLean.Section3_1.stableChangeOfRingsCobarIso}
+  \uses{prop:generalized_shapiro}
+  \leanok
+  When the stable cotensor satisfies $U_G \circ \pi^* \cong (B(n)_* \otimes_{K(n)_*} -) \circ U_H$, Proposition~\ref{prop:generalized_shapiro} yields the isomorphism of cobar hom-towers $\Hom_{\mathcal{C}^G}(M, \pi^* C^{\bullet}_H(N)) \cong \Hom_{\mathcal{D}^H}(\pi_* M, C^{\bullet}_H(N))$.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Direct specialization of Proposition~\ref{prop:generalized_shapiro}.
+\end{proof}
+
+\section{The Unstable Case}
+
+\begin{theorem}[Unstable Sandwich Comonad $U_{\Sigma}$]
+  \label{thm:unstable_sigma_comonad}
+  \lean{ThesisLean.Section3_2.unstableSigmaComonad}
+  \leanok
+  For any comonad $U_{\Gamma}$ on $\mathcal{C}$ and any adjunction $F \dashv U : \mathcal{D} \to \mathcal{C}$ with unit $\eta$ and counit $\varepsilon$, the endofunctor $U_{\Sigma} := F \circ U_{\Gamma} \circ U : \mathcal{D} \to \mathcal{D}$ is a comonad with counit $\epsilon^{\Sigma}_N = \varepsilon_N \circ F(\epsilon^{\Gamma}_{UN})$ and comultiplication $\Delta^{\Sigma}_N = F(U_{\Gamma}(\eta_{U_{\Gamma} UN})) \circ F(\Delta^{\Gamma}_{UN})$.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Coassociativity follows from naturality of $\Delta^{\Gamma}$, coassociativity of $U_{\Gamma}$, and naturality of $\eta$. Counitality follows from the counit laws of $U_{\Gamma}$ and both triangle identities of $F \dashv U$.
+\end{proof}
+
+\begin{theorem}[Unstable Base-Change Comonad Morphism]
+  \label{thm:unstable_alpha}
+  \lean{ThesisLean.Section3_2.unstableComonadFunctor}
+  \uses{thm:unstable_sigma_comonad, defn:comonad_functor}
+  \leanok
+  The natural transformation $\alpha_M := F(U_{\Gamma}(\eta_M)) : F(U_{\Gamma}(M)) \to U_{\Sigma}(F(M))$ makes $(F, \alpha) : (\mathcal{C}, U_{\Gamma}) \to (\mathcal{D}, U_{\Sigma})$ a functor of comonads.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Verified via naturality of $\Delta^{\Gamma}$, $\epsilon^{\Gamma}$, and $\eta$, together with the left triangle identity of $F \dashv U$.
+\end{proof}
+
+\begin{theorem}[Unstable Lifted Adjunction $\alpha_* \dashv \alpha^*$]
+  \label{thm:unstable_lifted_adj}
+  \lean{ThesisLean.Section3_2.unstableLiftedAdjunction, ThesisLean.Section3_2.unstableMateNatTrans_app}
+  \uses{thm:unstable_alpha, prop:lifted_adjunction}
+  \leanok
+  When $\mathcal{C}^{U_{\Gamma}}$ has equalizers, $(F, \alpha)$ induces an adjoint pair $\alpha_* \dashv \alpha^* : \mathcal{D}^{U_{\Sigma}} \to \mathcal{C}^{U_{\Gamma}}$, with explicit mate transformation $\beta_N = U(U_{\Sigma}(\varepsilon_N)) \circ \eta_{U_{\Gamma}(UN)}$.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Obtained by applying Proposition~\ref{prop:lifted_adjunction} to Theorem~\ref{thm:unstable_alpha}.
+\end{proof}
+
+\begin{theorem}[Lifted Counit Isomorphism $\alpha_*\alpha^* N \cong N$]
+  \label{thm:unstable_counit_iso}
+  \lean{ThesisLean.Section3_2.unstablePushforwardCotensorIso, ThesisLean.Section3_2.isIso_unstableLiftedCounit}
+  \uses{thm:unstable_lifted_adj, prop:canonical_equalizer}
+  \leanok
+  Assume $\mathcal{C}^{U_{\Gamma}}$ has equalizers, $F$ preserves the defining equalizer of $\alpha^* N$, and $\varepsilon : FU \xrightarrow{\sim} 1_{\mathcal{D}}$ is an isomorphism. Then the lifted counit $\tilde{\varepsilon}_N : \alpha_*(\alpha^* N) \to N$ is an isomorphism of $U_{\Sigma}$-coalgebras.
+\end{theorem}
+\begin{proof}
+  \leanok
+  On cofree objects, $\alpha_*(\cofree_{U_{\Gamma}}(UY)) = \cofree_{U_{\Sigma}}(Y)$ holds definitionally. Since $F$ preserves the equalizer and $\varepsilon$ is an isomorphism, $\alpha_*(\alpha^* N)$ is the equalizer of $(\cofree_{U_{\Sigma}}(\psi_N), \Delta^{\Sigma}_N)$, which is isomorphic to $N$ by Proposition~\ref{prop:canonical_equalizer} via the lifted counit $\tilde{\varepsilon}_N$.
+\end{proof}
+
+\begin{proposition}[Excess Bounds and Colimit Decomposition]
+  \label{prop:excess_and_colimit}
+  \lean{ThesisLean.Section3_2.excess_vn_shift_iff, ThesisLean.Section3_2.excess_ul_action_iff, ThesisLean.Section3_2.prop3_2_2_colimit_iso}
+  \uses{thm:unstable_sigma_comonad}
+  \leanok
+  The unstable excess condition $2p^n < k + (2p^n - 2)$ holds iff $k \ge 3$, and the $b(n)_*$-action excess condition $2p^n < k$ holds iff $k \ge 2p^n + 1$. In this range, left and right $v_n^{-1}$-actions commute with conjugation, and colimit preservation yields $U_{\Gamma}(K(n)_* \otimes M) \cong B(n)_* \otimes_{K(n)_*} U_{\Sigma}(K(n)_* \otimes M)$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Arithmetic bounds verified by linear arithmetic; inversion and colimit isomorphisms verified categorically.
+\end{proof}
+
+\begin{proposition}[Unstable Cotensor Identification and Height-$n$ Unit Isomorphism]
+  \label{prop:height_n_unit_iso}
+  \lean{ThesisLean.Section3_2.prop3_2_3_unitPullbackIso, ThesisLean.Section3_2.prop3_2_4_cotensor_cofree, ThesisLean.Section3_2.liftedUnitIsoOfHeightNConnected}
+  \uses{thm:unstable_lifted_adj, prop:canonical_equalizer, prop:excess_and_colimit}
+  \leanok
+  When $B(n)_* \otimes_{K(n)_*} -$ preserves the canonical equalizer of $U_{\Sigma}$-coalgebras:
+  \begin{enumerate}
+    \item $\alpha^*(U_{\Sigma}(Y)) \cong U_{\Gamma}(U(Y))$ on cofree coalgebras.
+    \item For $k$-connected $M$ with $k \ge 2p^n + 1$, the underlying object of $\alpha^*\alpha_* M$ is isomorphic to $B(n)_* \otimes_{BP_*} M$.
+    \item If $M$ is also of height $n$, the lifted unit $\tilde{\sigma}_M : M \to \alpha^*\alpha_* M$ is an isomorphism of $U_{\Gamma}$-coalgebras.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \leanok
+  Proved by comparing the defining equalizer of $\alpha^*$ with the image of the canonical equalizer of Proposition~\ref{prop:canonical_equalizer} under $B(n)_* \otimes_{K(n)_*} -$.
+\end{proof}
+
+\begin{theorem}[Unstable Change of Rings]
+  \label{thm:unstable_change_of_rings}
+  \lean{ThesisLean.Section3_2.unstableChangeOfRingsCobarIso, ThesisLean.Section3_2.unstablePullbackCobarLeftContractibleTower}
+  \uses{prop:generalized_shapiro, prop:height_n_unit_iso}
+  \leanok
+  If $M$ is a $U_{\Gamma}$-comodule of height $n$ and connectivity $k \ge 2p^n + 1$, then for any test coalgebra $P \in \mathcal{C}^{U_{\Gamma}}$, there is an isomorphism of coaugmented cosimplicial cobar hom-towers
+  \[
+    \Hom_{\mathcal{C}^{U_{\Gamma}}}(P, C^{\bullet}_{U_{\Gamma}}(M)) \;\cong\; \Hom_{\mathcal{D}^{U_{\Sigma}}}(\alpha_* P, C^{\bullet}_{U_{\Sigma}}(\alpha_* M)),
+  \]
+  and $\alpha^*(C^{\bullet}_{U_{\Sigma}}(\alpha_* M))$ has a left-contractible hom-tower into every cofree $U_{\Gamma}$-coalgebra. Consequently, $\Ext_{U_{\Gamma}}(BP_*, M) \cong \Ext_{U_{\Sigma}}(K(n)_*, K(n)_* \otimes_{BP_*} M)$.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Combines the cobar isomorphism induced by the lifted unit isomorphism $\tilde{\sigma}_M : M \xrightarrow{\sim} \alpha^*\alpha_* M$ of Proposition~\ref{prop:height_n_unit_iso} with the Generalized Shapiro's Lemma (Proposition~\ref{prop:generalized_shapiro}).
+\end{proof}

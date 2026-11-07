@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{barrbeck}
+M.~Barr and J.~Beck.
+\newblock Homology and standard constructions.
+\newblock In {\em Sem. on {T}riples and {C}ategorical {H}omology {T}heory
+  ({ETH}, {Z}\"urich, 1966/67)}, pages 245--335. Springer, 1969.
+
+\bibitem{bousfield}
+A.~K. Bousfield.
+\newblock Cosimplicial resolutions and homotopy spectral sequences in model
+  categories.
+\newblock {\em Geom. Topol.}, 7:1001--1053, 2003.
+
+\bibitem{lean4}
+L.~de~Moura and S.~Ullrich.
+\newblock The {L}ean 4 theorem prover and programming language.
+\newblock In {\em Automated Deduction -- CADE 28}, pages 625--635. Springer,
+  2021.
+
+\bibitem{mr}
+H.~R. Miller and D.~C. Ravenel.
+\newblock Morava stabilizer algebras and the localization of {N}ovikov's
+  {$E_{2}$}-term.
+\newblock {\em Duke Math. J.}, 44(2):433--447, 1977.
+
+\bibitem{greenbook}
+D.~C. Ravenel.
+\newblock {\em Complex cobordism and stable homotopy groups of spheres}, volume
+  121 of {\em Pure and Applied Mathematics}.
+\newblock Academic Press Inc., 1986.
+
+\bibitem{mathlib}
+{The mathlib Community}.
+\newblock The {L}ean mathematical library.
+\newblock In {\em Proceedings of CPP 2020}, pages 367--381. ACM, 2020.
+
+\end{thebibliography}
